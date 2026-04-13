@@ -1,85 +1,101 @@
 # Backend de Supermercado
 
 ## Integrantes
-- Diego Alejandro Granada
+
+* Diego Alejandro Granada
 
 ## Descripción del Proyecto
-Este proyecto consiste en el desarrollo de una API REST para la gestión de un supermercado, implementando arquitectura MVC utilizando Node.js, Express y PostgreSQL.
 
-El sistema permite administrar:
-- Productos
-- Proveedores
-- Usuarios
+API REST para la gestión de un supermercado usando arquitectura MVC con Node.js, Express y PostgreSQL.
 
-Cada entidad cuenta con operaciones CRUD completas y relaciones definidas mediante Sequelize ORM.
+Permite administrar:
 
-## Arquitectura
+* Productos
+* Proveedores
+* Usuarios
 
-El proyecto sigue el patrón MVC:
+## Arquitectura MVC
 
 ### Model
-- Definición de modelos con Sequelize
-- Representación de entidades en base de datos
+
+* Modelos con Sequelize
+* Representación de base de datos
 
 ### Controller
-- Lógica de negocio
-- Manejo de peticiones HTTP
+
+* Lógica de negocio
+* Manejo de endpoints
 
 ### View
-- Respuestas en formato JSON
-- Consumo desde cliente (Postman)
+
+* Respuestas en JSON
+* Consumo con Postman
+
+## Tecnologías
+
+* Node.js
+* Express.js
+* PostgreSQL
+* Sequelize
 
 
-## Tecnologías utilizadas
+## Relaciones
 
-- JavaScript (Node.js)
-- Express.js
-- PostgreSQL
-- Sequelize ORM
-
-
-## Relaciones implementadas
-
-- Un proveedor tiene muchos productos
-- Un producto pertenece a un proveedor
+* Un proveedor tiene muchos productos
+* Un producto pertenece a un proveedor
 
 
 ## Instrucciones de ejecución
 
-1. Instalar dependencias:
+### 1. Instalar dependencias
 
-```bash
+bash
 npm install
 
-2. Configurar la conexión a la base de datos PostgreSQL en el archivo:
+
+### 2. Configurar base de datos
+
+Editar:
+
+
 src/config/database.js
+
 
 (Tener la base de datos en postgres ya que me paso que ejecute sin crearla, estuve peleando con el error, pero lo solucione pgAdmin 4 creando la base de datos "supermercado")
 
-3. Ejecutar el servidor:
 
+### 3. Ejecutar servidor
+
+```bash
 npm start
+```
 
-4.El servidor se iniciará en:
+
+### 4. URL del servidor
 
 http://localhost:3000
 
-5. Probar los endpoints utilizando Postman o cualquier cliente HTTP.
+### 5. Probar API
 
-## Ejemplos de Endpoints
+Usar Postman o cualquier cliente HTTP.
+
+## Endpoints
 
 ### Productos
 
-## Obtener todos los productos
+#### Obtener todos
+
 GET http://localhost:3000/api/products
 
-## Obtener producto por ID
+#### Obtener por ID
+
 GET http://localhost:3000/api/products/1
 
-## Crear producto
-POST `http://localhost:3000/api/products`
+#### Crear
 
 ```json
+POST http://localhost:3000/api/products
+
 {
   "name": "Arroz",
   "description": "1kg",
@@ -87,9 +103,11 @@ POST `http://localhost:3000/api/products`
   "stock": 10,
   "providerId": 1
 }
+```
 
-## Actualizar producto
+#### Actualizar
 
+```json
 PUT http://localhost:3000/api/products/1
 
 {
@@ -99,19 +117,21 @@ PUT http://localhost:3000/api/products/1
   "stock": 15,
   "providerId": 1
 }
+```
 
-## Eliminar producto 
+#### Eliminar
 
 DELETE http://localhost:3000/api/products/1
 
-### Usuarios 
+### Usuarios
 
-## Obtener todos los usuarios
+#### Obtener todos
 
 GET http://localhost:3000/api/users
 
-## Crear usuario
+#### Crear
 
+```json
 POST http://localhost:3000/api/users
 
 {
@@ -119,13 +139,15 @@ POST http://localhost:3000/api/users
   "email": "diegogr@test.com",
   "role": "admin"
 }
+```
 
-## Obtener usuario por ID
+#### Obtener por ID
 
 GET http://localhost:3000/api/users/1
 
-## Actualizar usuario
+#### Actualizar
 
+```json
 PUT http://localhost:3000/api/users/1
 
 {
@@ -133,19 +155,22 @@ PUT http://localhost:3000/api/users/1
   "email": "diegot@test.com",
   "role": "admin"
 }
+```
 
-## Eliminar usuario
+#### Eliminar
 
 DELETE http://localhost:3000/api/users/1
 
+
 ### Proveedores
 
-## Obtener todos los proveedores
+#### Obtener todos
 
 GET http://localhost:3000/api/providers
 
-## Crear proveedor
+#### Crear
 
+```json
 POST http://localhost:3000/api/providers
 
 {
@@ -154,13 +179,15 @@ POST http://localhost:3000/api/providers
   "email": "prov@test.com",
   "city": "Bogota"
 }
+```
 
-## Obtener proveedor por ID
+#### Obtener por ID
 
 GET http://localhost:3000/api/providers/1
 
-## Actualizar proveedor
+#### Actualizar
 
+```json
 PUT http://localhost:3000/api/providers/1
 
 {
@@ -169,36 +196,27 @@ PUT http://localhost:3000/api/providers/1
   "email": "prov@test.com",
   "city": "Medellin"
 }
+```
 
-## Eliminar proveedor
+#### Eliminar
 
 DELETE http://localhost:3000/api/providers/1
 
-## Arquitectura MVC
+## Validaciones
 
-El proyecto sigue una arquitectura MVC estricta:
-
-- **Model:** Definición de entidades usando Sequelize
-- **Controller:** Manejo de lógica de negocio y endpoints
-- **View:** Respuestas en formato JSON
-
-
-## Validaciones implementadas
-
-- Precio de productos mayor a 0
-- Stock de productos no negativo
-- Email de usuario único
-- Relación entre productos y proveedores
+* Precio > 0
+* Stock ≥ 0
+* Email único
+* Relación producto-proveedor
 
 
 ## Pruebas
 
-Las pruebas fueron realizadas utilizando Postman, verificando todos los endpoints CRUD.
-
+Realizadas con Postman verificando todos los endpoints.
 
 ## Estado del proyecto
 
-API completamente funcional  
-CRUD completo en todas las entidades  
-Conexión a PostgreSQL estable  
-Arquitectura MVC implementada correctamente  
+✔ API funcional
+✔ CRUD completo
+✔ PostgreSQL conectado
+✔ Arquitectura MVC correcta
